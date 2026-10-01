@@ -22,7 +22,7 @@ void insertRear(int data)
     rear->next = newNode;
     rear = newNode;
 }
-
+  
 void deleteFront()
 {
     if (front == NULL && rear == NULL)
