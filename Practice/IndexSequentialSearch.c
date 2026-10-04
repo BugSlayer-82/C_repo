@@ -1,4 +1,4 @@
-#include<stdio.h>
+ #include<stdio.h>
 
 int indexSequentialSearch(int arr[], int grpSize, int target){
     // To divide the array into groups

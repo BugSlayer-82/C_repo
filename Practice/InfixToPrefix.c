@@ -11,6 +11,12 @@ struct Node *top = NULL;
 void push(char data)
 {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+
+    if(newNode == NULL){
+        printf("Memory allocation failed ...!")
+        ;
+        return;
+    }
     newNode->data = data;
     newNode->next = top;
     top = newNode;
