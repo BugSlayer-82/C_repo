@@ -37,7 +37,7 @@ void insertFront(int data)
     printf("Element inserted at front ...!\n");
 }
 
-void insertRear(int data)
+int isEmpty()
 {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -54,7 +54,7 @@ void insertRear(int data)
     }
     printf("Element inserted at rear...!\n");
 }
-
+  
 void deleteFront()
 {
     if (isEmpty())
@@ -74,6 +74,58 @@ void deleteFront()
         front->prev = NULL;  // Prev of front points to NULL
     }
     free(temp);
+}
+
+void deleteRear()
+{
+    if (isEmpty())
+    {
+        printf("Queue is Empty ..! \n");
+        return;
+    }
+    struct Node *currNode = rear;
+    printf("Data deleted from rear : %d \n", rear->data);
+    if (front == rear)
+    {
+        front = rear = NULL;
+    }
+    else
+    {
+        rear->next = NULL;
+    }
+    free(currNode);
+}
+
+void printFront()
+{
+    if (isEmpty())
+    {
+        printf("NULL \n");
+        return;
+    }
+    struct Node *currNode = front;
+    while (currNode != NULL)
+    {
+        printf("%d -> ", currNode->data);
+        currNode = currNode->next;
+    }
+    printf("NULL \n");
+}
+
+void printRear()
+{
+    if (isEmpty())
+    {
+        printf("NULL\n");
+        return;
+    }
+    struct Node *currNode = rear;
+    while (currNode != NULL)
+    {
+        printf("%d -> ", currNode->data);
+        currNode = currNode->prev;
+    }
+    printf("NULL \n");
 }
 
 void deleteRear()
