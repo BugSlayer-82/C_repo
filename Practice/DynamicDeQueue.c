@@ -54,7 +54,7 @@ void insertRear(int data)
     }
     printf("Element inserted at rear...!\n");
 }
-  
+
 void deleteFront()
 {
     if (isEmpty())
