@@ -37,11 +37,7 @@ void insertFront(int data)
     printf("Element inserted at front ...!\n");
 }
 
-<<<<<<< Updated upstream
-int isEmpty()
-=======
 void insertRear(int data)
->>>>>>> Stashed changes
 {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -132,61 +128,6 @@ void printRear()
     printf("NULL \n");
 }
 
-<<<<<<< Updated upstream
-void deleteRear()
-{
-    if (isEmpty())
-    {
-        printf("Queue is Empty ..! \n");
-        return;
-    }
-    struct Node *currNode = rear;
-    printf("Data deleted from rear : %d \n", rear->data);
-    if (front == rear)
-    {
-        front = rear = NULL;
-    }
-    else
-    {
-        rear->next = NULL;
-    }
-    free(currNode);
-}
-
-void printFront()
-{
-    if (isEmpty())
-    {
-        printf("NULL \n");
-        return;
-    }
-    struct Node *currNode = front;
-    while (currNode != NULL)
-    {
-        printf("%d -> ", currNode->data);
-        currNode = currNode->next;
-    }
-    printf("NULL \n");
-}
-
-void printRear()
-{
-    if (isEmpty())
-    {
-        printf("NULL\n");
-        return;
-    }
-    struct Node *currNode = rear;
-    while (currNode != NULL)
-    {
-        printf("%d -> ", currNode->data);
-        currNode = currNode->prev;
-    }
-    printf("NULL \n");
-}
-
-=======
->>>>>>> Stashed changes
 int main()
 {
     insertFront(30);
