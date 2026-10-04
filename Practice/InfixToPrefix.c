@@ -46,10 +46,36 @@ void printStack()
     printf("\n");
 }
 
+/* 1 Check precendence of Operator */
+int precedence()
+{
+
+}
+
+/* 2 Check associativity of Operator */
+char associativity(char ch)
+{
+    if (ch == '^')
+    {
+        return 'R';
+    }
+    return 'L';
+}
+
+/* 3 Check is operand */
+int operator(char ch)
+{
+    if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || (ch >= 0 && ch <= 9))
+    {
+        return 1;
+    }
+    return -1;
+}
+
+/* 4 Reverse  the expression*/
 void reverse(char exp[])
 {
     int i = 0, j = 0;
-    char ch;
     while (exp[i] != '\0')
     {
         i++;
@@ -57,65 +83,25 @@ void reverse(char exp[])
     i--;
     while (j < i)
     {
-        ch = exp[j];
+        char ch = exp[j];
         exp[j] = exp[i];
         exp[i] = ch;
         j++;
         i--;
     }
-    // /* Verification section for verify reverse expression
-    // int k = 0;
-    // while(exp[k]!='\0'){
-    //     printf("%c",exp[k]);
-    //     k++;
-    // }
-    // k--;
-    // printf("\n");
-    // printf("i: %d ,j: %d ,k: %d \n",i,j,k);
 }
 
-int isOperand(char ch)
-{
-    if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9'))
-    {
-        return 1;
-    }
-    return 0;
-}
-
-// int precedence(char ch)
-// {
-// }
-
-char associativity(char ch)
-{
-    if ((ch == '+') || (ch == '-') || (ch == '*') || (ch == '/'))
-    {
-        return 'L';
-    }
-    return 'R';
-}
-
-void prefix(char exp[])
-{
-    char prefix[100];
-    reverse(exp); // Step == 1 To reverse the expression
-    int i = 0;
-    while (exp[i] != '\0') // Step == 2 Traverse till null character
-    {
-        if (isOperand(exp[i])) // Step == 3 push or add into prefix
-        {
-            prefix[i] = exp[i];
-        }
-        i++;
-    }
-    // prefix[i] = '\0';
-    printf("%s \n",prefix);
-}
 int main()
 {
-    char exp[] = "((5+3)*2)-(8/4)";
-    prefix(exp);
+    char exp[] = "4+5*(8/3)*4-2*3";
+    reverse(exp);
+    // int i = 0;
+    // while (exp[i] != '\0')
+    // {
+    //     printf("%c ", exp[i]);
+    //     i++;
+    // }
 
+    
     return 0;
 }

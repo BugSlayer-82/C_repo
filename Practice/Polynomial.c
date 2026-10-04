@@ -11,58 +11,140 @@ struct Node
 struct Node *poly1 = NULL;
 struct Node *poly2 = NULL;
 
-struct Node *insert(struct Node *head, int coef, int exp)
+/* Insert expression to list */
+struct Node *insert(struct Node *head, int cof, int exp)
 {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
-    if(newNode == NULL){
-        printf("Memory allocation is failed ..! \n");
-        return head;
-    }
+    newNode->coeff = cof;
     newNode->expo = exp;
-    newNode->coeff = coef;
     newNode->next = NULL;
-
     if (head == NULL)
     {
-        return newNode;
+        head = newNode;
     }
-
-    struct Node *currNode = head;
-    while (currNode->next != NULL)
+    else
     {
-        currNode = currNode->next;
+        struct Node *currNode = head;
+        while (currNode->next != NULL)
+        {
+            currNode = currNode->next;
+        }
+        currNode->next = newNode;
     }
-    currNode->next = newNode;
-
     return head;
 }
 
+/* Function to add two polynomial */
+struct Node *addPoly(struct Node *poly1, struct Node *poly2)
+{
+    struct Node *result = NULL;
+    if (poly1 == NULL && poly2 == NULL) // case 1 : If both list are empty
+    {
+        printf("There is no expression for addition ..\n");
+        return NULL;
+    }
+    while (poly1 != NULL && poly2 != NULL)
+    {                                   // case 2 : list contains some terms
+        if (poly1->expo == poly2->expo) // case 3 : if the expo of list one is must be equal to list two
+        {
+            if (poly1->coeff + poly2->coeff != 0)
+            { // case 4 : if the sum of list one and list two is not equal to zero
+                result = insert(result, poly1->coeff + poly2->coeff, poly1->expo);
+            }
+            poly1 = poly1->next;
+            poly2 = poly2->next;
+        }
+        else if (poly1->expo > poly2->expo) // case 5 : if expo of list one is greater than list two then insert that term into result
+        {
+            result = insert(result, poly1->coeff, poly1->expo);
+            poly1 = poly1->next;
+        }
+        else // case 6 : if expo of list two is greater than list one then insert that term into result
+        {
+            result = insert(result, poly2->coeff, poly2->expo);
+            poly2 = poly2->next;
+        }
+    }
+
+    while (poly1 != NULL)
+    { // case 7 : if only the list is remaining term then add into result
+        result = insert(result, poly1->coeff, poly1->expo);
+        poly1 = poly1->next;
+    }
+
+    while (poly2 != NULL)
+    { // case 8 : if only the list is remaining term then add into result
+        result = insert(result, poly2->coeff, poly2->expo);
+        poly2 = poly2->next;
+    }
+    return result;
+}
+
+/* Function to multiply two polynomial */
+struct Node *mulPoly(struct Node *poly1, struct Node *poly2)
+{
+    
+}
+
+/* Function print the polynomial */
 void printList(struct Node *head)
 {
     if (head == NULL)
     {
-        printf("0\n");
+        printf("List is empty ...! \n");
         return;
     }
-    struct Node *currNode = head;
-    while (currNode != NULL)
+    while (head != NULL)
     {
-        printf("%dX^%d ", currNode->coeff, currNode->expo);
-        if (currNode->next != NULL)
+        if (head->next == NULL)
         {
-            printf(" + ");
+            printf("%dx^%d", head->coeff, head->expo);
         }
-        currNode = currNode->next;
+        else
+        {
+            printf("%dx^%d + ", head->coeff, head->expo);
+        }
+        head = head->next;
     }
     printf("\n");
 }
+
 int main()
 {
-    
-    poly1 = insert(poly1, 3, 2);
-    poly1 = insert(poly1, 2, 1);
-    poly1 = insert(poly1, 5, 0);
-
+    struct Node *poly1 = NULL;
+    struct Node *poly2 = NULL;
+    int t1, t2;
+    int c, e, i = 0;
+    printf("****____*****____*****____*****____****\n");
+    printf("Enter the number term in polynomial 1 : ");
+    scanf("%d", &t1);
+    while (i < t1)
+    {
+        printf("Enter your coeff of term %d : ", i + 1);
+        scanf("%d", &c);
+        printf("Enter your expo of term %d : ", i + 1);
+        scanf("%d", &e);
+        poly1 = insert(poly1, c, e);
+        i++;
+    }
+    printf("Enter the number term in polynomial 2 : ");
+    scanf("%d", &t2);
+    i = 0;
+    while (i < t2)
+    {
+        printf("Enter your coeff of term %d : ", i + 1);
+        scanf("%d", &c);
+        printf("Enter your expo of term %d : ", i + 1);
+        scanf("%d", &e);
+        poly2 = insert(poly2, c, e);
+        i++;
+    }
+    printf("Polynomial 1 : ");
     printList(poly1);
+    printf("Polynomial 2 : ");
+    printList(poly2);
+
+    printf("Addition of list one and two is : ");
+    printList(addPoly(poly1, poly2));
     return 0;
 }
