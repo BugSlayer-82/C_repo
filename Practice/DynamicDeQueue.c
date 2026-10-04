@@ -37,7 +37,11 @@ void insertFront(int data)
     printf("Element inserted at front ...!\n");
 }
 
+<<<<<<< Updated upstream
 int isEmpty()
+=======
+void insertRear(int data)
+>>>>>>> Stashed changes
 {
     struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
     newNode->data = data;
@@ -128,6 +132,7 @@ void printRear()
     printf("NULL \n");
 }
 
+<<<<<<< Updated upstream
 void deleteRear()
 {
     if (isEmpty())
@@ -180,6 +185,8 @@ void printRear()
     printf("NULL \n");
 }
 
+=======
+>>>>>>> Stashed changes
 int main()
 {
     insertFront(30);
