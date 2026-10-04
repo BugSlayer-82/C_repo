@@ -2,7 +2,8 @@
 
 int indexSequentialSearch(int arr[], int grpSize, int target){
     // To divide the array into groups
-    
+    int i = 0;
+    int j = 9;
     return -1;
 }
 
