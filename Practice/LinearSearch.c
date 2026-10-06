@@ -54,19 +54,19 @@ int binarySearchRec(int arr[], int low, int high, int key)
     }
     else if (arr[mid] > key)
     {
-        binarySearchRec(arr, low, mid - 1, key);
+        return binarySearchRec(arr, low, mid - 1, key);
     }
     else
     {
-        binarySearchRec(arr, mid + 1, high, key);
+        return binarySearchRec(arr, mid + 1, high, key);
     }
 }
 
 /* 4 ===> Index Sequential Search */
 int indexSequentialSearch(int arr[], int size, int key)
 {
-    int gs, n, val_index = 0, flag = 0;
-    printf("Enter group size : ");
+    int gs, n, flag = 0;
+    printf("Enter your group size : ");
     scanf("%d", &gs);
     if (size % gs == 0)
     {
@@ -76,39 +76,56 @@ int indexSequentialSearch(int arr[], int size, int key)
     {
         n = size / gs + 1;
     }
-
-    int value[n], idx[n];
+    int val_idx = 0;
+    int val[n], idx[n];
+    int start, end;
     for (int i = 0; i < size; i += gs)
     {
-        value[val_index] = arr[i];
-        idx[val_index] = i;
-        val_index++;
+        val[val_idx] = arr[i];
+        idx[val_idx] = i;
+        val_idx++;
     }
-    if (key < 0)
-    {
+    if (key < val[0])
+    { // case 1 : if the key is smaller then the value inside the val array at '0' index
         return -1;
     }
     for (int i = 0; i < n; i++)
     {
-        if(key == value[i]){
+        if (key == val[i])
+        { // case 2 : if key is matched in val array so direct return i;
             return idx[i];
         }
-        if(key < value[i]){
+        if (key < val[i])
+        { // case 3 : if key available before val[i] or it is less then val[i]
             start = idx[i - 1];
-            end= idx[i] -1;
+            end = idx[i] - 1;
             flag = 1;
             break;
         }
     }
-    if(flag == 1){
-        for(int i = start; i <=end; i++){
-            if(key== arr[i]){
+
+    if (flag == 1)
+    {
+        for (int i = start; i <= end; i++)
+        {
+            if (key == arr[i])
+            {
                 return i;
             }
         }
         return -1;
-    }else{
-        
+    }
+    else
+    {
+        start = idx[n - 1];
+        for (int i = start; i < size; i++)
+        {
+            if (key == arr[i])
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }
 
