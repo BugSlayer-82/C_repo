@@ -56,6 +56,22 @@ void selectionSort(int arr[], int n)
     }
 }
 
+/* 4 ====> QuickSort */
+int partitiion(int arr, int low, int high)
+{
+    if()
+}
+void quickSort(int arr[], int low, int high)
+{
+    if (low < high)
+    { // case 1 : The size of array is valid
+        int p = partitiion(arr, low, high);
+        quickSort(arr, low, p - 1); // Left sublist
+        quickSort(arr, p + 1, high); // Right sublist
+    }
+
+}
+
 int main()
 {
     int arr[] = {5, 12, 14, 6, 7, 8, 9, 10, 2, 3, 4, 11, 18, 19, 20};
