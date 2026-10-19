@@ -57,9 +57,33 @@ void selectionSort(int arr[], int n)
 }
 
 /* 4 ====> QuickSort */
-int partitiion(int arr, int low, int high)
+void swap(int arr[],int x,int y)
 {
-    if()
+    int t = arr[x];
+    arr[x] = arr[y];
+    arr[y] = t;
+}
+
+int partitiion(int arr[], int low, int high)
+{
+    int pivot = arr[low];
+    int i = low + 1;
+    int j = high;
+    while(i <= j){
+        while(i <= high && arr[i] < pivot){ // case :  2 if the current element is smaller then pivot then move left
+            i++;
+        }
+        while(j > low && arr[j] > pivot){ // case : 3 if the current element is greater then pivot then move right
+            j--;
+        }
+        if(i < j){
+            swap(arr,i,j);
+            i++,j--;
+            // break;
+        }
+    }
+    swap(arr,low,j);
+    return j;
 }
 void quickSort(int arr[], int low, int high)
 {
@@ -69,12 +93,20 @@ void quickSort(int arr[], int low, int high)
         quickSort(arr, low, p - 1); // Left sublist
         quickSort(arr, p + 1, high); // Right sublist
     }
+}
 
+
+/* Merge Sort */
+void merge(int arr[],int p,int q,int r){
+
+}
+void mergeSort(int arr[],int n){
+    
 }
 
 int main()
 {
-    int arr[] = {5, 12, 14, 6, 7, 8, 9, 10, 2, 3, 4, 11, 18, 19, 20};
+    int arr[] = {5, 12, -14, 6, 7, -8, 9, 10, 2, 3, -4, 11, 18, 19, 20};
     int n = sizeof(arr) / sizeof(int);
     printf("Array Before Sorting  : ");
     for (int i = 0; i < n; i++)
@@ -84,6 +116,7 @@ int main()
     // bubbleSort(arr, n);
     // insertionSort(arr, n);
     // selectionSort(arr, n);
+    quickSort(arr,0,n - 1);
     printf("\nArray After Sorting  : ");
     for (int j = 0; j < n; j++)
     {
