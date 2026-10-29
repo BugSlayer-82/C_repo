@@ -95,19 +95,69 @@ void quickSort(int arr[], int low, int high)
     }
 }
 
-
 /* Merge Sort */
-void merge(int arr[],int p,int q, int r){
+void merge(int arr[], int p, int q, int r)
+{
+    int sl = q - p + 1;
+    int sr = r - q;
+    int al[sl], ar[sr];
 
+    for (int i = 0; i < sl; i++)
+    {
+        al[i] = arr[p + i];
+    }
+    for (int i = 0; i < sr; i++)
+    {
+        ar[i] = arr[q + 1 + i];
+    }
+
+    int i = 0, j = 0, k = p;
+    while (i < sl && j < sr)
+    {
+        if (al[i] < ar[j])
+        {
+            arr[k] = al[i];
+            i++;
+            k++;
+        }
+        else
+        {
+            arr[k] = ar[j];
+            j++;
+            k++;
+        }
+    }
+
+    while (i < sl)
+    {
+        arr[k] = al[i];
+        i++;
+        k++;
+    }
+
+    while (j < sr)
+    {
+        arr[k] = ar[j];
+        j++;
+        k++;
+    }
 }
-void mergeSort(int arr[],int n){
-
+void mergeSort(int arr[], int low, int high)
+{
+    if (low < high)
+    {
+        int mid = low + (high  - low) / 2;
+        mergeSort(arr, low, mid);
+        mergeSort(arr, mid + 1, high);
+        merge(arr, low, mid, high);
+    }
 }
 
 /* Radix Sort*/
-void radixSort(int arr[],int n){
-
+void radixSort(int arr[], int n)
+{
 }
+
 int main()
 {
     int arr[] = {3, 2, 1, 6, 4, 8, 5, 7, 9};
@@ -116,6 +166,7 @@ int main()
     // selectionSort(arr,n);
     // insertionSort(arr,n);
     // quickSort(arr, 0, n);
+    // mergeSort(arr, 0, n);
     for (int i = 0; i < n; i++)
     {
         printf("%d ", arr[i]);

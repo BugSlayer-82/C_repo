@@ -58,7 +58,11 @@ int binarySearchRec(int arr[], int key, int low, int high)
 /* Index Sequential Search */
 int indexSequentialSearch(int arr[], int size, int key, int gs)
 {
-    int N, start, end, val_idx = 0, flag = 0;
+    if(gs > size || size <= 0){
+        return -1;
+    }
+
+    int N, start = 0, end = 0, val_idx = 0, flag = 0;
     if (size % gs == 0)
     {
         N = size / gs;
@@ -78,7 +82,7 @@ int indexSequentialSearch(int arr[], int size, int key, int gs)
 
     if (key < val[0])
     {
-        return 0;
+        return -1;
     }
 
     for (int i = 0; i < N; i++)
@@ -105,6 +109,7 @@ int indexSequentialSearch(int arr[], int size, int key, int gs)
                 return i;
             }
         }
+        return -1;
     }
     else
     {
@@ -116,8 +121,8 @@ int indexSequentialSearch(int arr[], int size, int key, int gs)
                 return i;
             }
         }
+        return -1;
     }
-    return -1;
 }
 
 int main()
@@ -126,8 +131,8 @@ int main()
     int n = sizeof(arr) / sizeof(int);
     // int result = linearSearch(arr,n,16);
     // int result = binarySearch(arr, n, 16);
-    int result = binarySearchRec(arr,15,0,n);
-    // int result = indexSequentialSearch(arr, n, 16, 3);
+    // int result = binarySearchRec(arr,15,0,n);
+    int result = indexSequentialSearch(arr, n, 16, 3);
     if (result != -1)
     {
         printf("Element found at Index : %d \n", result);
