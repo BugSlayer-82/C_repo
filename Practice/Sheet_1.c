@@ -1,5 +1,35 @@
 #include <stdio.h>
-#include <limits.h>
+// #include <limits.h>
+
+// /* Question 16 --> To remove duplicate */
+// void removeDuplicate(int arr[], int n)
+// {
+//     int temp[n];
+//     int k = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int found = 0;
+//         for (int j = 0; j < k; j++)
+//         {
+//             if (arr[i] == temp[j])
+//             {
+//                 found = 1;
+//                 break;
+//             }
+//         }
+//         if (found == 0)
+//         {
+//             temp[k] = arr[i];
+//             k++;
+//         }
+//     }
+//     printf("After removing duplicates ...!\n");
+//     for (int i = 0; i < k; i++)
+//     {
+//         printf("%d ", temp[i]);
+//     }
+//     printf("\n");
+// }
 
 // /* Question 15 --> To Calculate the sum of array element */
 // int sumOfArray(int n, int arr[n], int sum)
@@ -492,6 +522,11 @@ int main()
     // }
     // int result = sumOfArray(n, arr, 0);
     // printf("Sum is : %d \n", result);
+
+    // /* Question 16 --> To remove duplicate */
+    // int arr[] = {2, 3, 2, 1, 6, 4, 2, 9, 5, 3, 6, 4, 3, 0, 5, 8, 9};
+    // int n = sizeof(arr) / sizeof(int);
+    // removeDuplicate(arr, n);
 
     return 0;
 }
