@@ -27,7 +27,8 @@ int main()
     addLast(80);
     printList();
     deleteFirst();
-    deleteFirst();
+    printList();
+    deleteLast();
     printList();
 
     return 0;
@@ -112,8 +113,13 @@ void deleteLast()
         head = NULL;
         return;
     }
-
-    
+    struct Node * currNode = head;
+    do{
+        currNode = currNode -> next;
+    }while(currNode -> next -> next != head);
+    struct Node * temp = currNode -> next;
+    currNode -> next = head;
+    free(temp);
 }
 
 /* Print List */
